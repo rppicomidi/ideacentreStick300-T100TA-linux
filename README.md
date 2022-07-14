@@ -1,7 +1,9 @@
 # How to set up Xubuntu 22.04 on a Lenovo ideacentre Stick 300
 
 ## Credit where credit is due
-These instructions are based on the instructions I found [here](https://medium.com/@realzedgoat/a-sorta-beginners-guide-to-installing-ubuntu-linux-on-32-bit-uefi-machines-d39b1d1961ec). The instructions were close but did not quite work. I got a
+These instructions are based on the instructions I found [here](https://medium.com/@realzedgoat/a-sorta-beginners-guide-to-installing-ubuntu-linux-on-32-bit-uefi-machines-d39b1d1961ec). It's a good idea to read that document first because it describes the process in more detail and has pictures.
+
+The instructions were close but did not quite work. I got a
 hint [here](https://unix.stackexchange.com/questions/405472/cannot-find-efi-directory-issue-with-grub-install). The grub-install man page
 gave me the rest of the info.
 
