@@ -72,7 +72,7 @@ What you will do here is write the grub-efi-ia32 bootloader over the 64-bit boot
 7. When the command completes type `mkdir /mnt/root`
 8. When the command completes type `sudo mount /dev/mmcblk1p1 /mnt/efi`
 9. When the command completes type `sudo mount /dev/mmcblk1p2 /mnt/root`
-10. When the command completes type `sudo grub install --efi-directory=/mnt/efi --boot-directory=/mnt/root/boot`
+10. When the command completes type `sudo grub-install --efi-directory=/mnt/efi --boot-directory=/mnt/root/boot`
 11. When the command completes type `sync`
 12. When command completes, cleanly shut down the Stick 300 using the GUI.
 13. Remove the flash drive from the hub and power back on. The system should boot normally.
