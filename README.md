@@ -7,6 +7,9 @@ The instructions were close but did not quite work. I got a
 hint [here](https://unix.stackexchange.com/questions/405472/cannot-find-efi-directory-issue-with-grub-install). The grub-install man page
 gave me the rest of the info.
 
+I found that these instructions work for the Asus T100TA (I never throw anything away). 
+WARNING for the T100TA:  when you boot back up, the num lock key will be stuck on. When you try your password the first time, it won't work.
+
 ## Why did I do this?
 The Lenovo ideacentre Stick 300 has a quad-core Atom processor, 2 GB of RAM and 32GB of eMMC.
 It comes with 32-bit Windows 10 Home pre-installed, so I thought I would use it to run the Logitech Media Server.
@@ -76,3 +79,8 @@ What you will do here is write the grub-efi-ia32 bootloader over the 64-bit boot
 11. When the command completes type `sync`
 12. When command completes, cleanly shut down the Stick 300 using the GUI.
 13. Remove the flash drive from the hub and power back on. The system should boot normally.
+
+## Clean up and update your installation
+
+1. Update the language pack when prompted and update the software too.
+2. 
