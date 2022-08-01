@@ -3,7 +3,8 @@
 ## Introduction
 These instructions and external hyperlinks work today. There will probably come a time when they no longer work.
 The instructions apply to both the Lenovo ideacentre Stick 300 and the Asus T100TA unless the heading over the steps
-says otherwise.
+says otherwise. I believe these instructions will work on the Intel Compute Stick that shipped with Windows because
+I believe the hardware is the same as the Stick 300. I have not tested this, however.
 
 I wrote these instructions with a lot of detail, references and commentary. I hope I don't offend those who just want
 a quick guide. If you find typos, facts I got wrong, or things that don't work for you,
