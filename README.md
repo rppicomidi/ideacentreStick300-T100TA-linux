@@ -1,8 +1,13 @@
 # How to set up Xubuntu 22.04 on the Lenovo ideacentre Stick 300 or the Asus T100TA
 
-## Normal caveats with step-by-step guide
-These instructions work today. They are probably only good for a few months. The instructions work equally well
-for the Lenovo ideacentre Stick 300 and the T100TA.
+## Introduction
+These instructions and external hyperlinks work today. There will probably come a time when they no longer work.
+The instructions apply to both the Lenovo ideacentre Stick 300 and the Asus T100TA unless the heading over the steps
+says otherwise.
+
+I wrote these instructions with a lot of detail, references and commentary. I hope I don't offend those who just want
+a quick guide. If you find typos, facts I got wrong, or things that don't work for you,
+please file an issue.
 
 ## Credit where credit is due
 These instructions are based on the instructions I found [here](https://medium.com/@realzedgoat/a-sorta-beginners-guide-to-installing-ubuntu-linux-on-32-bit-uefi-machines-d39b1d1961ec). It's a good idea to read that document first because it describes the process in more detail and has pictures. The instructions were close but did not quite work. I got a
@@ -84,11 +89,11 @@ Press `Secure Boot Support` and set it to Disabled.
 5. Press the `F10` key to `Save and Exit`.
 6. Wait for Windows to boot and restart the PC again. 
 7. As in step 3, press the `DEL` key or `F2` key at the right time to enter the BIOS menu.
-8. When the BIOS screen appears select `Boot`. Then select the `EFI USB Device` as Boot Option #1.
+8. When the BIOS screen appears select `Boot`. Then select the `EFI USB Device` as `Boot Option #1`.
 9. Press the `F10` key to `Save and Exit`.
 10. Xubuntu should start to boot from the flash drive.
 
-## Try Xubuntu 22.04 and then install it.
+## Try Xubuntu 22.04 and then install it
 
 1. You will get a choice to try or install Xubuntu. Select the try option. If you select the install
 option, it is more work to fix up the installation.
@@ -98,9 +103,9 @@ so if it is working, double click the install icon and install it. Make sure to 
 install 3rd party drivers and to update while installing.
 3. Installation will take a while, especially if your WiFi connection is weak.
 4. When installation is complete, you will be prompted to reboot or keep testing. Select keep testing.
-You have to manually the 32-bit Grub bootloader instead of the 64-bit Grub bootloader that got installed.
+You have to manually install the 32-bit Grub bootloader instead of the 64-bit Grub bootloader that got installed.
 
-## Fix the Grub bootloader.
+## Fix the Grub bootloader
 
 What you will do here is write the grub-efi-ia32 bootloader over the 64-bit bootloader installed on the eMMC.
 To do that you need to get the latest version of the 32-bit bootloader, mount the EFI partition on the eMMC
@@ -140,7 +145,9 @@ or through the microUSB charging port with an OTG adapter.
   - I didn't try Bluetooth audio but that also might work.
 
 - With an external HDMI monitor connected, the T100TA LCD is off. If you turn it on using the Screen settings or the F8 function key,
-the touchscreen touch points are wrong. I fixed it with this script that I set up to run at startup
+the touchscreen touch points are wrong. I fixed it with this script that I set up to run at startup. The comments in the script
+explains what it is doing. See the man pages for `xrandr` and `xinput` if you need more information about what those commands do.
+
 ```
 #!/bin/bash
 
