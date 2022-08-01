@@ -147,6 +147,7 @@ or through the microUSB charging port with an OTG adapter.
 - With an external HDMI monitor connected, the T100TA LCD is off. If you turn it on using the Screen settings or the F8 function key,
 the touchscreen touch points are wrong. I fixed it with this script that I set up to run at startup. The comments in the script
 explains what it is doing. See the man pages for `xrandr` and `xinput` if you need more information about what those commands do.
+This file is saved separately in this project as `fix-lcd-with-hdmi.sh`.
 
 ```
 #!/bin/bash
