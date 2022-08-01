@@ -17,7 +17,8 @@ small that after updates completed there was hardly any space left. Also, Window
 and the Stick 300 won't support Windows 11. I thought it is time to install a version of Linux on it. As an
 added bonus, the Atom processor supports 64-bit instructions, so installing Linux would give me a 64-bit OS.
 
-I had a T100TA lying around that I wanted to use as a media player, server, and digital picture frame. That the
+I had a T100TA lying around that I wanted to use as a media player, server, and digital picture frame. I wanted
+to get rid of 32-bit Windows because Linux support will last a while and Windows support runs out in a few years. That the
 [built-in audio turned out to be broken](#issues-i-had-with-the-t100ta) made me abandon this and reinstall Windows. I am publishing this information
 in case you want Linux on your T100TA for other reasons.
 
@@ -122,12 +123,15 @@ during normal installation.
 - The num-lock key is on by default when you first boot up. If you require a password when you log in, when you enter your password,
 it likely will fail. Toggle the numlock on the keyboard and it will work again.
 
-- The built in audio is broken in the Linux Audio system and the SOF project has no plans to fix it.
-See this [issue](https://github.com/thesofproject/sof/issues/3868). The askubuntu site says there is a [fix for
+- The built in audio is broken in the Linux Audio system and the SOF project has no plans to fix it. After a few minutes, audio stops
+coming out of the speakers or headphones and is replaced by an ear-splitting screeching noise.
+See this [issue](https://github.com/thesofproject/sof/issues/3868). The askubuntu site says there is a [fix in
 Ubuntu 20.04LTS](https://askubuntu.com/questions/1395617/no-sound-on-asus-transformer-t100ha) but I never tried it.
-Audio over HDMI works fine. Audio from a USB to audio adapter also works fine either through the keyboard USB host
-or through the microUSB charging port with the OTG adapter. If you want to use the T100TA always with a
-keyboard or with an external monitor attached, then it might be fine.
+Workarounds exist, but did not work for my application:
+  - Audio over HDMI works fine. 
+  - Audio from a USB to audio adapter also works fine either through the keyboard's USB host
+or through the microUSB charging port with an OTG adapter.
+  - I didn't try Bluetooth audio but that also might work.
 
 - With an external HDMI monitor connected, the T100TA LCD is off. If you turn it on using the Screen settings or the F8 function key,
 the touchscreen touch points are wrong. I fixed it with this script that I set up to run at startup
