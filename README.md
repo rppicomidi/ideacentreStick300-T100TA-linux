@@ -24,7 +24,8 @@ in case you want Linux on your T100TA for other reasons.
 
 ## Why Xubuntu 22.04
 I already have experience with Ubuntu-based distributions, and Xubuntu Linux is a light(er) weight Linux than
-the standard Ubuntu Linux distribution. I like the Xfce desktop, and Xubuntu 22.04 will be supported for a long time.
+the standard Ubuntu Linux distribution. I like the Xfce desktop, and Xubuntu 22.04 and its successors will hopefully
+be supported for a long time.
 
 ## Problems to solve
 
@@ -67,24 +68,25 @@ and copy it to the EFI/boot directory on the flash drive.
 4. When the Lenovo logo appears, press the `ESC` key repeatedly until it the screen indicates a Hot Key was detected.
 5. In the Boot Menu Screen select the `Secure Boot Option` and then set `Enforce Secure Boot` to `Disabled` (see the pictures
 in steps 3 & 4 [here](https://support.lenovo.com/us/en/solutions/ht118103-flash-bios-with-uefi-tool-ideacentre-stick-300).
-6. Press F10 to save the changes. The Stick 300 will reboot.
-7. When the Lenovo screen shows up, press F12 to get the boot option. Select the `EFI USB Device`
+6. Press `F10` to save the changes. The Stick 300 will reboot.
+7. When the Lenovo screen shows up, press `F12` to get the boot option. Select the `EFI USB Device`
 8. Xubuntu should start to boot.
 
 ## Set up the T100TA to boot from a flash drive
 
 1. Plug the T100TA keyboard to your T100TA so you have access to the USB host port.
 2. Connect your Xubuntu 22.04 flash drive to the USB port on the T100TA keyboard.
-3. Power on the T100TA and watch for the camera LED to come on. You need to hit the DEL key or the F2 key repeated
+3. Power on the T100TA and watch for the camera LED to come on. You need to hit the `DEL` key or the `F2` key repeatedly
 after this light comes on but before the ASUS boot screen appears. It is tricky and takes practice. If your
 system just boots to windows, restart your computer and try again.
-4. When the BIOS screen appears, use the arrow keys to navigate to the Security menu and then select the Secure Boot Menu.
-Press Secure Boot Support and set it to Disabled.
-5. Press the F10 key to Save and Exit.
-6. Wait for Windows to boot and select Restart again from the power options. When the BIOS screen appears Select Boot.
-Then select the `EFI USB Device` as Boot Option #1.
-7. Press the F10 key to Save and Exit
-8. Xubuntu should start to boot from the flash drive.
+4. When the BIOS screen appears, use the arrow keys to navigate to the `Security` menu and then select the `Secure Boot Menu`.
+Press `Secure Boot Support` and set it to Disabled.
+5. Press the `F10` key to `Save and Exit`.
+6. Wait for Windows to boot and restart the PC again. 
+7. As in step 3, press the `DEL` key or `F2` key at the right time to enter the BIOS menu.
+8. When the BIOS screen appears select `Boot`. Then select the `EFI USB Device` as Boot Option #1.
+9. Press the `F10` key to `Save and Exit`.
+10. Xubuntu should start to boot from the flash drive.
 
 ## Try Xubuntu 22.04 and then install it.
 
@@ -95,21 +97,25 @@ can access it. Make sure sound is working from HDMI. That is pretty much all the
 so if it is working, double click the install icon and install it. Make sure to select
 install 3rd party drivers and to update while installing.
 3. Installation will take a while, especially if your WiFi connection is weak.
-4. When installation is complete, you will be prompted to reboot or keep testing. Select keep testing
-Time to fix up the installation.
+4. When installation is complete, you will be prompted to reboot or keep testing. Select keep testing.
+You have to manually the 32-bit Grub bootloader instead of the 64-bit Grub bootloader that got installed.
+
 ## Fix the Grub bootloader.
 
 What you will do here is write the grub-efi-ia32 bootloader over the 64-bit bootloader installed on the eMMC.
+To do that you need to get the latest version of the 32-bit bootloader, mount the EFI partition on the eMMC
+because it is not mounted now after Linux installation completed, install the bootloader to the correct
+locations, clean up, and do a clean shutdown.
 
 1. Open a terminal window and type `sudo apt update`
 2. When the command completes type `sudo apt install grub-efi-ia32-bin`
-3. When the command completes type `sudo mount /dev/mmcblk1p1 /mnt
+3. When the command completes type `sudo mount /dev/mmcblk1p1 /mnt`
 4. When the command completes type `sudo grub-install --efi-directory=/mnt --boot-directory=/target/boot`
 5. When the command completes type `sync`
-6. When the command completes type `sudio umount /mnt`
+6. When the command completes type `sudo umount /mnt`
 7. When command completes, cleanly shut down the Stick 300 or the T100TA using the GUI. It will take
 a long time to shutdown (took me about an hour). I don't know why. Just wait for it to shut down cleanly.
-8. Remove the Xubuntu 22.04 flash driveand power back on. The system should boot normally.
+8. Remove the Xubuntu 22.04 flash drive and power back on. The system should boot normally.
 
 ## Clean up and update your installation
 
