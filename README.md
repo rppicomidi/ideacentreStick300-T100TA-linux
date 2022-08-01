@@ -18,14 +18,14 @@ gave me the rest of the info.
 The Lenovo ideacentre Stick 300 has a quad-core Atom processor, 2 GB of RAM and 32GB of eMMC.
 It comes with 32-bit Windows 10 Home pre-installed, so I thought I would use it to run the Logitech Media Server.
 I hadn't used the PC in a long time time, so I tried to update it. Windows Update is slow, and the eMMC is so
-small that after updates completed there was hardly any space left. Also, Windows 10 is support is going away soon
+small that after updates completed there was hardly any space left. Also, Windows 10 support is going away soon
 and the Stick 300 won't support Windows 11. I thought it is time to install a version of Linux on it. As an
 added bonus, the Atom processor supports 64-bit instructions, so installing Linux would give me a 64-bit OS.
 
 I had a T100TA lying around that I wanted to use as a media player, server, and digital picture frame. I wanted
 to get rid of 32-bit Windows because Linux support will last a while and Windows support runs out in a few years. That the
-[built-in audio turned out to be broken](#issues-i-had-with-the-t100ta) made me abandon this and reinstall Windows. I am publishing this information
-in case you want Linux on your T100TA for other reasons.
+[Linux driver for the built-in audio turned out to be broken](#issues-i-had-with-the-t100ta) made me abandon this and reinstall Windows.
+I am publishing this information in case you want Linux on your T100TA for other reasons.
 
 ## Why Xubuntu 22.04
 I already have experience with Ubuntu-based distributions, and Xubuntu Linux is a light(er) weight Linux than
@@ -122,6 +122,19 @@ locations, clean up, and do a clean shutdown.
 a long time to shutdown (took me about an hour). I don't know why. Just wait for it to shut down cleanly.
 8. Remove the Xubuntu 22.04 flash drive and power back on. The system should boot normally.
 
+## In case you reset your computer before installing the correct Grub bootloader
+
+If you mistakenly skipped the try Xubuntu step and went straight to the install step, or if you choose
+reboot instead of keep testing, you don't get a chance to do this procedure. The system will try to boot
+the 64-bit grub and will fail. You do not have to reinstall Linux. The code is still there. To recover,
+boot Linux again from the flash drive and select try Xubuntu. After Linux boots, open a terminal window
+and type the following commands
+```
+sudo mkdir /target
+sudo mount /dev/mmcblk1p2 /target
+```
+and then follow the steps in the [previous section](#fix-the-grub-bootloader).
+
 ## Clean up and update your installation
 
 1. If you are prompted to do so, update the language pack.
@@ -138,7 +151,7 @@ it likely will fail. Toggle the numlock on the keyboard and it will work again.
 coming out of the speakers or headphones and is replaced by an ear-splitting screeching noise.
 See this [issue](https://github.com/thesofproject/sof/issues/3868). The askubuntu site says there is a [fix in
 Ubuntu 20.04LTS](https://askubuntu.com/questions/1395617/no-sound-on-asus-transformer-t100ha) but I never tried it.
-Workarounds exist, but did not work for my application:
+Workarounds that I tried exist, but my project needed the on-board audio to work:
   - Audio over HDMI works fine. 
   - Audio from a USB to audio adapter also works fine either through the keyboard's USB host
 or through the microUSB charging port with an OTG adapter.
