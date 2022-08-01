@@ -150,6 +150,9 @@ explains what it is doing. See the man pages for `xrandr` and `xinput` if you ne
 
 ```
 #!/bin/bash
+# If an external HDMI monitor is connected to the T100TA at boot, this script
+# will force on the power of the T100TA's LCD and it will set up the LCD
+# as the left hand screen and the HDMI monitor as the right hand screen.
 
 # if HDMI monitor was attached on boot, then the LCD touchscreen will be off
 if xrandr --listactivemonitors | grep -q HDMI; then
@@ -162,13 +165,7 @@ if xrandr --listactivemonitors | grep -q HDMI; then
 # map it to the LCD (DSI-1)
   TSID=$(xinput --list | grep "ATML1000" | cut -d "=" -f2 | cut -f1)
   if [ $TSID ]; then
-#    echo "TSID=$TSID"
     xinput map-to-output $TSID DSI-1
-#  else
-#    echo "Touchscreen ID not found"
   fi
-
-#else
-#  echo "nothing to fix"
 fi
 ```
