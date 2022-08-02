@@ -10,6 +10,10 @@ I wrote these instructions with a lot of detail, references and commentary. I ho
 a quick guide. If you find typos, facts I got wrong, or things that don't work for you,
 please file an issue.
 
+These instructions assume you want to replace Windows with Linux. These instructions do not cover dual
+boot. Dual boot is probably possible on these old computers if you install Linux to the
+microSD card. I have no idea whether dual boot works well enough to make it worth your effort.
+
 ## Credit where credit is due
 These instructions are based on the instructions I found [here](https://medium.com/@realzedgoat/a-sorta-beginners-guide-to-installing-ubuntu-linux-on-32-bit-uefi-machines-d39b1d1961ec). It's a good idea to read that document first because it describes the process in more detail and has pictures. The instructions were close but did not quite work. I got a
 hint [here](https://unix.stackexchange.com/questions/405472/cannot-find-efi-directory-issue-with-grub-install). The grub-install man page
@@ -33,8 +37,9 @@ I already have experience with Ubuntu-based distributions, and Xubuntu Linux is 
 the standard Ubuntu Linux distribution. I like the Xfce desktop, and Xubuntu 22.04 and its successors will hopefully
 be supported for a long time.
 
-## Problems to solve
+## Summary of what you will do
 
+0. Back up your computer before you change anything
 1. Download Xubuntu 22.04 ISO file and burn it to a flash drive
 2. Get into the computer's BIOS and make the changes required to boot from the Linux ISO file in the flash drive
 3. Install the Xubuntu image to the computer's eMMC
@@ -42,17 +47,21 @@ be supported for a long time.
 
 ## Back up your computer in case you decide to go back to Windows
 
-Before doing anything else, back up your computer and create a [Windows Recovery Drive](https://support.microsoft.com/en-us/windows/create-a-recovery-drive-abb4691b-5324-6d4a-8766-73fab304c246#WindowsVersion=Windows_10)
-with all the system files on it in case you decide Xubuntu doesn't work for you and want to go back to Windows.
-Create the Windows Recovery Drive overnight because it takes many hours for some reason. Dual boot is possible with this if you put a microSD card
-in the slot, but since getting rid of Windows is my goal, I didn't set it up that way and have never tested it.
+Before doing anything else, back up your computer. If you don't have a backup utility,
+at the very least copy whatever data you can't live without to external storage and then
+create a [Windows Recovery Drive](https://support.microsoft.com/en-us/windows/create-a-recovery-drive-abb4691b-5324-6d4a-8766-73fab304c246#WindowsVersion=Windows_10)
+with all the system files on it. With the recovery drive and a lot of work you can restore Windows 10
+to where it was in case you decide Xubuntu doesn't work for you and want to go back to Windows.
+Creating a Windows Recover Drive was not a fast process. It took my Stick 300 many hours to do this. I do not know why.
 
-## A warning about the Windows Recovery Drive Image
+## A warning about the Windows Recovery Drive image
 
 After extensive testing, I decided I wanted to put Windows 10 back on my T100TA. My T100TA shipped with Windows 8.1
 pre-installed. The Windows 10 upgrade was free. However, Windows 10 created a recovery drive with Windows 8.1 on it
-instead of Windows 10. It also put all the original version of Asus utilities. Getting Windows 10 back on was a pain.
-I had to download the Windows 10 ISO image from the Microsoft website, mount it, run the setup program, and tell it
+instead of Windows 10. It also reinstalled all of the original versions of Asus utilities and drivers.
+
+Getting Windows 10 back on was a pain. I had to download the Windows 10 ISO image from the Microsoft website,
+mount it, run the setup program, and tell it
 not to install updates while installing, and then I had to use the Windows Update utility in the Settings to load
 updates. It took forever. I also had to remove unwanted Asus utilies and put the latest version of the utilities
 I did want. If I had it to do over again I would have burned a full image of eMMC drive using a utility like
@@ -61,10 +70,10 @@ never tried Macrium Reflect but my web searches always seem to turn that one up.
 
 ## Preparing the flash drive 
 
-I used a PC and Rufus to put the Xubuntu 22.04 AMD64 image on an old 16GB USB 2.0 flash drive.
+I used a PC and Rufus to put the Xubuntu 22.04 AMD64 image on a 16GB USB 2.0 flash drive.
 The Ubuntu website has a good tutorial [here](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview).
 
-This image won't boot on the Stick 300 or the T100TA because they require a 32-bit EFI bootloader
+This image won't boot on the Stick 300 or the T100TA because the EFI BIOS on those computers require a 32-bit EFI bootloader
 and the standard Xubuntu ISO image only includes a 64-bit EFI bootloader. To fix this, get
 the file `bootia32.efi` from [here](https://github.com/hirotakaster/baytail-bootia32.efi/blob/master/bootia32.efi)
 and copy it to the EFI/boot directory on the flash drive.
