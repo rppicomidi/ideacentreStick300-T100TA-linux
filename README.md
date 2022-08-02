@@ -36,24 +36,27 @@ be supported for a long time.
 ## Problems to solve
 
 1. Download Xubuntu 22.04 ISO file and burn it to a flash drive
-2. Figure out how to make the Stick 300 boot from a flash drive
-3. Install the Xubuntu image to eMMC
-4. Debug issues booting the Xubuntu image from eMMC
+2. Get into the computer's BIOS and make the changes required to boot from the Linux ISO file in the flash drive
+3. Install the Xubuntu image to the computer's eMMC
+4. Fix issues booting the Xubuntu image from eMMC
 
 ## Back up your computer in case you decide to go back to Windows
 
-Before doing anything else, back up your Stick 300 and create a [Windows Recovery Drive](https://support.microsoft.com/en-us/windows/create-a-recovery-drive-abb4691b-5324-6d4a-8766-73fab304c246#WindowsVersion=Windows_10)
-with all the system files on it in case this doesn't work for you. Create the Windows Recovery Drive overnight
-because it takes many hours for some reason. Dual boot is possible with this if you put a microSD card
+Before doing anything else, back up your computer and create a [Windows Recovery Drive](https://support.microsoft.com/en-us/windows/create-a-recovery-drive-abb4691b-5324-6d4a-8766-73fab304c246#WindowsVersion=Windows_10)
+with all the system files on it in case you decide Xubuntu doesn't work for you and want to go back to Windows.
+Create the Windows Recovery Drive overnight because it takes many hours for some reason. Dual boot is possible with this if you put a microSD card
 in the slot, but since getting rid of Windows is my goal, I didn't set it up that way and have never tested it.
 
-## A warning about the T100TA Windows Recovery Drive Image
+## A warning about the Windows Recovery Drive Image
 
-My T100TA came with Windows 8.1 pre-installed, so the recovery drive put Windows 8.1 on the T100TA instead of Windows 10
-like I had before. Getting Windows 10 back on was a pain. I had to download the Windows 10 ISO image from the Microsoft
-website, mount it, run the setup program, and tell it not to install updates while installing, and then I had to use the
-Windows Update utility in the Settings to load updates. It took forever. If I had it to do over again I would have
-burned a full image of eMMC drive using a utility like [Macrium Reflect](https://www.macrium.com/reflectfree). I have
+After extensive testing, I decided I wanted to put Windows 10 back on my T100TA. My T100TA shipped with Windows 8.1
+pre-installed. The Windows 10 upgrade was free. However, Windows 10 created a recovery drive with Windows 8.1 on it
+instead of Windows 10. It also put all the original version of Asus utilities. Getting Windows 10 back on was a pain.
+I had to download the Windows 10 ISO image from the Microsoft website, mount it, run the setup program, and tell it
+not to install updates while installing, and then I had to use the Windows Update utility in the Settings to load
+updates. It took forever. I also had to remove unwanted Asus utilies and put the latest version of the utilities
+I did want. If I had it to do over again I would have burned a full image of eMMC drive using a utility like
+[Macrium Reflect](https://www.macrium.com/reflectfree). I have
 never tried Macrium Reflect but my web searches always seem to turn that one up.
 
 ## Preparing the flash drive 
@@ -61,8 +64,8 @@ never tried Macrium Reflect but my web searches always seem to turn that one up.
 I used a PC and Rufus to put the Xubuntu 22.04 AMD64 image on an old 16GB USB 2.0 flash drive.
 The Ubuntu website has a good tutorial [here](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview).
 
-This image won't boot on the Stick 300 because the Stick 300 requires a 32-bit UEFI bootloader
-and the standard Xubuntu ISO image assumes a 64-bit UEFI bootloader. To fix this, get
+This image won't boot on the Stick 300 or the T100TA because they require a 32-bit EFI bootloader
+and the standard Xubuntu ISO image only includes a 64-bit EFI bootloader. To fix this, get
 the file `bootia32.efi` from [here](https://github.com/hirotakaster/baytail-bootia32.efi/blob/master/bootia32.efi)
 and copy it to the EFI/boot directory on the flash drive.
 
@@ -146,17 +149,24 @@ during normal installation.
 
 ## Issues I had with the T100TA
 - The num-lock key is on by default when you first boot up. If you require a password when you log in, when you enter your password,
-it likely will fail. Toggle the numlock on the keyboard and it will work again.
+it likely will fail. Toggle the numlock on the keyboard and type in your password. It should work this time. Once you are logged in
+and have verified the num lock setting is off, be sure to go the [Xfce keyboard settings](https://docs.xfce.org/xfce/xfce4-settings/keyboard)
+and check the `Restore num lock state on startup` checkbox.
 
 - The built in audio is broken in the Linux Audio system and the SOF project has no plans to fix it. After a few minutes, audio stops
 coming out of the speakers or headphones and is replaced by an ear-splitting screeching noise.
 See this [issue](https://github.com/thesofproject/sof/issues/3868). The askubuntu site says there is a [fix in
-Ubuntu 20.04LTS](https://askubuntu.com/questions/1395617/no-sound-on-asus-transformer-t100ha) but I never tried it.
-Workarounds that I tried exist, but my project needed the on-board audio to work:
-  - Audio over HDMI works fine. 
-  - Audio from a USB to audio adapter also works fine either through the keyboard's USB host
-or through the microUSB charging port with an OTG adapter.
-  - I didn't try Bluetooth audio but that also might work.
+Ubuntu 20.04LTS for the T100HA](https://askubuntu.com/questions/1395617/no-sound-on-asus-transformer-t100ha)
+but I never tried it for the T100TA. I found some workarounds that allowed me to get reliable audio from the T100TA,
+but my project needed the on-board audio to work:
+  - Audio over HDMI works fine (but see the issues I had with HDMI). However, my home theater receivers requires
+that the TV is turned on for it to extract audio from HDMI, and my application required it to work when the TV
+was off, too.
+  - Audio from a USB audio adapter also works fine either through the keyboard's USB host
+or through the microUSB charging port with an OTG adapter. My project required the T100TA to hang from the wall
+with no keyboard attached so that ruled out the USB host, and it required it to always be powered from external power,
+which ruled out the OTG port (none of the OTG hubs I tried would reliably charge the T100TA and work as a hub at the same time).
+  - I didn't try Bluetooth audio. That might work but my project required a wired connection to my home theater receiver.
 
 - With an external HDMI monitor connected, the T100TA LCD is off. If you turn it on using the Screen settings or the F8 function key,
 the touchscreen touch points are wrong. I fixed it with this script that I set up to run at startup. The comments in the script
