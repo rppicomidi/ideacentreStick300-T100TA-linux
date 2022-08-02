@@ -40,7 +40,7 @@ be supported for a long time.
 ## Summary of what you will do
 
 0. Back up your computer before you change anything
-1. Download Xubuntu 22.04 ISO file and burn it to a flash drive
+1. Download the Xubuntu 22.04 ISO file and burn it to a flash drive
 2. Get into the computer's BIOS and make the changes required to boot from the Linux ISO file in the flash drive
 3. Install the Xubuntu image to the computer's eMMC
 4. Fix issues booting the Xubuntu image from eMMC
