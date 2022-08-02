@@ -52,7 +52,7 @@ at the very least copy whatever data you can't live without to external storage 
 create a [Windows Recovery Drive](https://support.microsoft.com/en-us/windows/create-a-recovery-drive-abb4691b-5324-6d4a-8766-73fab304c246#WindowsVersion=Windows_10)
 with all the system files on it. With the recovery drive and a lot of work you can restore Windows 10
 to where it was in case you decide Xubuntu doesn't work for you and want to go back to Windows.
-Creating a Windows Recover Drive was not a fast process. It took my Stick 300 many hours to do this. I do not know why.
+Creating a Windows Recovery Drive was not a fast process. It took my Stick 300 many hours to do this. I do not know why.
 
 ## A warning about the Windows Recovery Drive image
 
@@ -64,7 +64,7 @@ Getting Windows 10 back on was a pain. I had to download the Windows 10 ISO imag
 mount it, run the setup program, and tell it
 not to install updates while installing, and then I had to use the Windows Update utility in the Settings to load
 updates. It took forever. I also had to remove unwanted Asus utilies and put the latest version of the utilities
-I did want. If I had it to do over again I would have burned a full image of eMMC drive using a utility like
+I did want. If I had it to do over again I would have burned a full image of the eMMC drive using a utility like
 [Macrium Reflect](https://www.macrium.com/reflectfree). I have
 never tried Macrium Reflect but my web searches always seem to turn that one up.
 
@@ -154,10 +154,11 @@ and then follow the steps in the [previous section](#fix-the-grub-bootloader).
 2. Run the Software Update tool from the XFCE menu in case there are any updates that didn't get installed
 during normal installation.
 3. Reboot the computer.
-4. Enjoy.
+4. Linux should boot normally.
+5. Enjoy.
 
 ## Issues I had with the T100TA
-- The num-lock key is on by default when you first boot up. If you require a password when you log in, when you enter your password,
+- The keyboard's num-lock mode is on by default when you first boot up. If you require a password when you log in, when you enter your password,
 it likely will fail. Toggle the numlock on the keyboard and type in your password. It should work this time. Once you are logged in
 and have verified the num lock setting is off, be sure to go the [Xfce keyboard settings](https://docs.xfce.org/xfce/xfce4-settings/keyboard)
 and check the `Restore num lock state on startup` checkbox.
@@ -168,18 +169,19 @@ See this [issue](https://github.com/thesofproject/sof/issues/3868). The askubunt
 Ubuntu 20.04LTS for the T100HA](https://askubuntu.com/questions/1395617/no-sound-on-asus-transformer-t100ha)
 but I never tried it for the T100TA. I found some workarounds that allowed me to get reliable audio from the T100TA,
 but my project needed the on-board audio to work:
-  - Audio over HDMI works fine (but see the issues I had with HDMI). However, my home theater receivers requires
-that the TV is turned on for it to extract audio from HDMI, and my application required it to work when the TV
-was off, too.
+  - Audio over HDMI works fine if the T100TA HDMI is connected directly to a TV or to a home theatre receiver. However,
+my home theater receiver requires that the TV is turned on for it to extract audio from HDMI, and my application required
+audio to work when the TV was off, too. If you decide to hook an external TV or monitor to the T100TA, there are additional issues (see next major bullet).
   - Audio from a USB audio adapter also works fine either through the keyboard's USB host
 or through the microUSB charging port with an OTG adapter. My project required the T100TA to hang from the wall
 with no keyboard attached so that ruled out the USB host, and it required it to always be powered from external power,
 which ruled out the OTG port (none of the OTG hubs I tried would reliably charge the T100TA and work as a hub at the same time).
   - I didn't try Bluetooth audio. That might work but my project required a wired connection to my home theater receiver.
 
-- With an external HDMI monitor connected, the T100TA LCD is off. If you turn it on using the Screen settings or the F8 function key,
-the touchscreen touch points are wrong. I fixed it with this script that I set up to run at startup. The comments in the script
-explains what it is doing. See the man pages for `xrandr` and `xinput` if you need more information about what those commands do.
+- If an external HDMI monitor connected to the T100TA during T100TA boot, the T100TA starts up with the LCD is off.
+If you turn it on using the Screen settings or the F8 function key, the touchscreen touch points are wrong. I fixed it with
+this script that I set up to run at startup. The comments in the script explains what it is doing. See the man pages for
+`xrandr` and `xinput` if you need more information about what those commands do.
 This file is saved separately in this project as `fix-lcd-with-hdmi.sh`.
 
 ```
