@@ -173,7 +173,8 @@ audio to work when the TV was off, too. If you decide to hook an external TV or 
 or through the microUSB charging port with an OTG adapter. My project required the T100TA to hang from the wall
 with no keyboard attached so that ruled out the USB host, and it required it to always be powered from external power,
 which ruled out the OTG port (none of the OTG hubs I tried would reliably charge the T100TA and work as a hub at the same time).
-  - I briefly tried Bluetooth audio when I ran the live version of Linux in Try Xubuntu mode. It worked briefly and then died. Would not connect again.
+
+- I tried Bluetooth audio when I ran the live version of Linux in Try Xubuntu mode. It worked briefly and then died. Would not connect again.
 I can't say what the issue was. I do know that Bluetooth audio works well with with Windows 10 on the same T100TA.
 
 - If an external HDMI monitor connected to the T100TA during T100TA boot, the T100TA starts up with the LCD is off.
