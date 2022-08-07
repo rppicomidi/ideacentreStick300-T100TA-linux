@@ -99,12 +99,9 @@ after this light comes on but before the ASUS boot screen appears. It is tricky 
 system just boots to windows, restart your computer and try again.
 4. When the BIOS screen appears, use the arrow keys to navigate to the `Security` menu and then select the `Secure Boot Menu`.
 Press `Secure Boot Support` and set it to Disabled.
-5. Press the `F10` key to `Save and Exit`.
-6. Wait for Windows to boot and restart the PC again. 
-7. As in step 3, press the `DEL` key or `F2` key at the right time to enter the BIOS menu.
-8. When the BIOS screen appears select `Boot`. Then select the `EFI USB Device` as `Boot Option #1`.
-9. Press the `F10` key to `Save and Exit`.
-10. Xubuntu should start to boot from the flash drive.
+5. Use the arrow keys to select `Boot`. Then select the `UEFI USB Device` as `Boot Option #1`.
+6. Press the `F10` key to `Save and Exit`.
+7. Xubuntu should start to boot from the flash drive.
 
 ## Try Xubuntu 22.04 and then install it
 
@@ -176,7 +173,8 @@ audio to work when the TV was off, too. If you decide to hook an external TV or 
 or through the microUSB charging port with an OTG adapter. My project required the T100TA to hang from the wall
 with no keyboard attached so that ruled out the USB host, and it required it to always be powered from external power,
 which ruled out the OTG port (none of the OTG hubs I tried would reliably charge the T100TA and work as a hub at the same time).
-  - I didn't try Bluetooth audio. That might work but my project required a wired connection to my home theater receiver.
+  - I briefly tried Bluetooth audio when I ran the live version of Linux in Try Xubuntu mode. It worked briefly and then died. Would not connect again.
+I can't say what the issue was. I do know that Bluetooth audio works well with with Windows 10 on the same T100TA.
 
 - If an external HDMI monitor connected to the T100TA during T100TA boot, the T100TA starts up with the LCD is off.
 If you turn it on using the Screen settings or the F8 function key, the touchscreen touch points are wrong. I fixed it with
